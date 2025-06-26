@@ -4,11 +4,11 @@ WORKDIR /source
 
 # Copy project file and restore as distinct layers
 COPY --link rockstarmvc/*.csproj .
-RUN dotnet restore -r 'linux-x64'
+RUN dotnet restore -a 'amd64'
 
 # Copy source code and publish app
 COPY --link rockstarmvc/. .
-RUN dotnet publish -r 'linux-x64' --no-restore -o /app
+RUN dotnet publish -a 'amd64' --no-restore -o /app
 
 
 # Runtime stage
