@@ -3,7 +3,6 @@ version: 0.2
 env:
   variables:
     AWS_REGION_2: "us-east-2"
-    REACT_APP_API_SERVICE_URL: "http://http://flask-react-alb2-146681863.us-east-1.elb.amazonaws.com"
     WEBAPP_API_SERVICE_URL: "http://rockstar-alb2-146681863.us-east-1.elb.amazonaws.com"
 
 phases:
@@ -23,14 +22,12 @@ phases:
           -f jukeboxapi/Dockerfile \
           -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/rockstar/api:prod \
           --build-arg DOTNET_ENV=production \
-          --build-arg ASPNETCORE_HTTP_PORTS=8080 \
           ./jukeboxapi
       - >
         docker build \
           -f jukeboxmvc/Dockerfile \
           -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/rockstar/webapp:prod \
           --build-arg DOTNET_ENV=production \
-          --build-arg ASPNETCORE_HTTP_PORTS=8081 \
           --build-arg WEBAPP_API_SERVICE_URL=${WEBAPP_API_SERVICE_URL} \
           ./jukeboxmvc
   post_build:

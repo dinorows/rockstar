@@ -13,7 +13,8 @@ RUN dotnet publish --no-restore -o /app
 
 # Runtime stage
 FROM mcr.microsoft.com/dotnet/nightly/aspnet:10.0-preview
-EXPOSE 8080
+ENV ASPNETCORE_URLS="http://localhost:8081"
+EXPOSE 8081
 WORKDIR /app
 COPY --link --from=build /app .
 USER $APP_UID

@@ -16,7 +16,8 @@ services:
       - 8010:8080
     environment:
       - DOTNET_ENV=development
-      - ASPNETCORE_HTTP_PORTS=8080
+      #- ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_URLS=http://+:8080
     networks:
       - api_network
 
@@ -36,7 +37,9 @@ services:
       - WEBAPP_API_NETWORK=api_network
       - WEBAPP_API_PORT=8010
       - WEBAPP_API_SERVICE_URL=${WEBAPP_API_SERVICE_URL}
-      - ASPNETCORE_HTTP_PORTS=8081
+      #- ASPNETCORE_HTTP_PORTS=8081
+      # instead:
+      - ASPNETCORE_URLS=http://+:8081
     depends_on:
       - api
     # specifies frontend and backend as the networks the fe service will have access to
