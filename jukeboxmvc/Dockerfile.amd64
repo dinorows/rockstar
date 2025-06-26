@@ -1,0 +1,21 @@
+# This Dockerfile is for rockstarmvc folder and multi-platform builds
+FROM --platform=linux/amd64 mcr.microsoft.com/dotnet/nightly/sdk:10.0-preview AS build
+WORKDIR /source
+
+# Copy project file and restore as distinct layers
+COPY --link rockstarmvc/*.csproj .
+RUN dotnet restore -a linux/amd64
+
+# Copy source code and publish app
+COPY --link rockstarmvc/. .
+RUN dotnet publish -a linux/amd64 --no-restore -o /app
+
+
+# Runtime stage
+FROM --platform=linux/amd64 mcr.microsoft.com/dotnet/nightly/aspnet:10.0-preview
+ENV ASPNETCORE_URLS="http://localhost:8081"
+EXPOSE 8081
+WORKDIR /app
+COPY --link --from=build /app .
+USER $APP_UID
+ENTRYPOINT ["./rockstarmvc"]
