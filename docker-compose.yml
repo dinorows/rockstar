@@ -31,7 +31,7 @@ services:
       #- './jukeboxmvc:/usr/src/app'
       #- '/usr/src/app/node_modules'
     ports:
-      - 8011:8081
+      - 8011:8080
     environment:
       - DOTNET_ENV=development
       - WEBAPP_API_NETWORK=api_network
@@ -39,7 +39,7 @@ services:
       - WEBAPP_API_SERVICE_URL=${WEBAPP_API_SERVICE_URL}
       #- ASPNETCORE_HTTP_PORTS=8081
       # instead:
-      - ASPNETCORE_URLS=http://+:8081
+      #- ASPNETCORE_URLS=http://+:8081
     depends_on:
       - api
     # specifies frontend and backend as the networks the fe service will have access to
