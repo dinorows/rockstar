@@ -17,7 +17,7 @@ services:
     environment:
       - DOTNET_ENV=development
       #- ASPNETCORE_HTTP_PORTS=8080
-      - ASPNETCORE_URLS=http://+:8080
+      #- ASPNETCORE_URLS=http://+:8080
     networks:
       - api_network
 
