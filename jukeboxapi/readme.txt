@@ -1,6 +1,3 @@
-jukeboxapi: attempted to modernize, but does not run natively.
-Use sibling rockstarapi instead!
-
 Native:
 dotnet build
 dotnet run

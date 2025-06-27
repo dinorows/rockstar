@@ -1,6 +1,3 @@
-jukeboxmvc: attempted to modernize, but does not run natively.
-Use sibling rockstarmvc instead!
-
 Native:
 dotnet build
 dotnet run
